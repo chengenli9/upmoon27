@@ -1,0 +1,26 @@
+services:
+  ros2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lunabotics_ros2
+    stdin_open: true
+    tty: true
+    privileged: true          # simplifies USB/serial device access (e.g. Sabertooth motor controllers)
+    network_mode: host        # required for ROS2 DDS discovery between containers/host
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - LIBGL_ALWAYS_SOFTWARE=1   # fallback to software rendering if no GPU passthrough; remove if using nvidia GPU
+      - ROS_DOMAIN_ID=0
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ~/.Xauthority:/root/.Xauthority:rw
+      - .:/workspace
+      # Uncomment to pass through serial/USB devices (motor controllers, sensors, etc.)
+      # - /dev:/dev
+    devices: []
+      # Uncomment and list specific devices instead of the whole /dev tree, e.g.:
+      # - /dev/ttyUSB0:/dev/ttyUSB0
+    working_dir: /workspace
+    command: /bin/bash

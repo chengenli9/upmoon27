@@ -1,0 +1,9 @@
+# colcon/ROS2 build artifacts
+build/
+install/
+log/
+
+# Common editor/OS junk (optional, remove if unwanted)
+.vscode/
+*.swp
+.DS_Store
