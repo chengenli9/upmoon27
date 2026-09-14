@@ -105,6 +105,7 @@ ROS2 Humble runs on Ubuntu 22.04 Jammy, so we need to make sure we're running th
     ```
 3. Run the container:
     ```
+    xhost +local:docker
     docker compose exec ros2 bash 
     ```
 
