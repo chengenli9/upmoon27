@@ -184,14 +184,8 @@ upmoon27/
 ├── install/
 ├── log/
 └── src/
-    └── rover_description/
-        ├── rover_description/
-        ├── resource/
-        ├── package.xml
-        ├── setup.py
-        └── setup.cfg
-    └── rover_navigation/
-        ├── rover_navigation/
+    └── test_pkg/
+        ├── test_pkg/
         ├── resource/
         ├── package.xml
         ├── setup.py
