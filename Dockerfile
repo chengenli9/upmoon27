@@ -20,7 +20,18 @@ RUN apt-get update && apt-get install -y \
     ros-humble-tf2-ros \
     ros-humble-tf2-msgs \
     ros-humble-gazebo-ros-pkgs \
+    ros-humble-rviz2 \
+    ros-humble-gazebo-plugins \
+    ros-humble-gazebo-msgs \
     ros-humble-teleop-twist-keyboard \
+    'ros-humble-nav2-*' \
+    ros-humble-navigation2 \
+    ros-humble-turtlebot3 \
+    ros-humble-turtlebot3-msgs \
+    ros-humble-turtlebot3-simulations \
+    ros-humble-slam-toolbox \
+    ros-humble-robot-localization \
+    ros-humble-pointcloud-to-laserscan \
     libgazebo-dev \
     cmake \
     build-essential \
@@ -45,6 +56,7 @@ WORKDIR /workspace
 
 # Set up environment sourcing in bashrc for interactive shells
 RUN echo "source /opt/ros/humble/setup.bash" >> /root/.bashrc
+RUN printf '%s\n' "LS_COLORS=\$LS_COLORS:'ow=1;34:'" >> /root/.bashrc
 
 # Default command
 CMD ["/bin/bash"]
