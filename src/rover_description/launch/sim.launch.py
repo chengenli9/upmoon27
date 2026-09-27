@@ -3,10 +3,11 @@ import os
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 from launch_ros.actions import Node
+from launch.substitutions import LaunchConfiguration
 
 
 def generate_launch_description():
@@ -16,6 +17,14 @@ def generate_launch_description():
     # !!! MAKE SURE YOU SET THE PACKAGE NAME CORRECTLY !!!
 
     package_name='rover_description' #<--- CHANGE ME
+
+    # Path to the world file, mounted from the repo root at /workspace in the container
+    world = LaunchConfiguration('world')
+    world_arg = DeclareLaunchArgument(
+        'world',
+        default_value='/workspace/gz_worlds/obstacles.world',
+        description='Full path to the Gazebo world file to load'
+    )
 
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
@@ -39,6 +48,7 @@ def generate_launch_description():
 
     # Launch them all!
     return LaunchDescription([
+        world_arg,
         rsp,
         gazebo,
         spawn_entity,
