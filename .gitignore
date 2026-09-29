@@ -6,4 +6,5 @@ log/
 # Common editor/OS junk (optional, remove if unwanted)
 .vscode/
 *.swp
+core.*
 .DS_Store
