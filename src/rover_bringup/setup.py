@@ -18,7 +18,7 @@ setup(
     zip_safe=True,
     maintainer='root',
     maintainer_email='root@todo.todo',
-    description='TODO: Package description',
+    description='Top-level launch files that bring up the rover in simulation or on real hardware, combining robot description, slam_toolbox, and Nav2.',
     license='Apache-2.0',
     extras_require={
         'test': [
