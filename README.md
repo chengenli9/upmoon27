@@ -46,12 +46,16 @@ Wah Lah! Your environment is setup.
     ```
     This will launch Gazebo software with the default `obstacle.world` file, which can be found in `gz_worlds` folder. It will also spawn the robot. 
 
+    ![gazebo example](gazebo_example.png)
+
 2. Terminal 2: View in RViz2
     
     Make sure each new terminal is in a container, run `./start_docker.sh` and `source install/setup.bash`
     ```
     rviz2 -d sim_test.rviz
     ```
+    ![rviz example](rviz_example.png)
+
 3. Terminal 3: Control the robot with Keyboard
     ```
     ./teleop_kg.sh
@@ -60,6 +64,7 @@ Wah Lah! Your environment is setup.
 
 
 ### Run SLAM for Mapping
+
 1. Terminal 4: Run SLAM toolbox node.
     ```
     ros2 launch rover_slam online_async_launch.py
