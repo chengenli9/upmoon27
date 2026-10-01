@@ -63,13 +63,13 @@ Visualization Manager:
           Value: true
         laser_frame:
           Value: true
-        left_wheel:
+        left_back_wheel:
           Value: true
         map:
           Value: true
         odom:
           Value: true
-        right_wheel:
+        right_back_wheel:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -87,9 +87,9 @@ Visualization Manager:
                   {}
                 laser_frame:
                   {}
-              left_wheel:
+              left_back_wheel:
                 {}
-              right_wheel:
+              right_back_wheel:
                 {}
       Update Interval: 0
       Value: true
@@ -134,12 +134,12 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        left_wheel:
+        left_back_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_wheel:
+        right_back_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
