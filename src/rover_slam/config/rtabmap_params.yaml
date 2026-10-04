@@ -1,0 +1,39 @@
+rtabmap:
+  ros__parameters:
+
+    # Frames
+    frame_id: base_link
+    odom_frame_id: odom
+    map_frame_id: map
+    publish_tf: true
+    wait_for_transform: 0.2
+
+    # Inputs: two synced RGB-D cameras (front/rear), no lidar scan
+    subscribe_depth: false
+    subscribe_rgb: false
+    subscribe_rgbd: true
+    rgbd_cameras: 2
+    subscribe_scan: false
+    subscribe_scan_cloud: false
+    subscribe_odom_info: false
+    approx_sync: true
+    queue_size: 10
+
+    # Mapping mode: build a fresh map every run (no prior session reuse)
+    Mem/IncrementalMemory: "true"
+    Mem/InitWMWithAllNodes: "false"
+
+    # Registration/loop closure tuned for vision (no onboard lidar/ICP source)
+    Reg/Strategy: "0"
+    RGBD/NeighborLinkRefining: "true"
+    RGBD/ProximityBySpace: "true"
+    RGBD/AngularUpdate: "0.05"
+    RGBD/LinearUpdate: "0.05"
+    RGBD/CreateOccupancyGrid: "true"
+
+    # 2D occupancy grid projected from depth, published on grid_map (remapped to /map)
+    Grid/FromDepth: "true"
+    Grid/CellSize: "0.05"
+    Grid/RangeMax: "5.0"
+    Grid/MaxObstacleHeight: "2.0"
+    Grid/3D: "false"

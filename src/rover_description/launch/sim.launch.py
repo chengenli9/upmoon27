@@ -22,7 +22,7 @@ def generate_launch_description():
     world = LaunchConfiguration('world')
     world_arg = DeclareLaunchArgument(
         'world',
-        default_value='/workspace/gz_worlds/obstacles.world',
+        default_value='/workspace/gz_worlds/arena_box_craters.world',
         description='Full path to the Gazebo world file to load'
     )
 

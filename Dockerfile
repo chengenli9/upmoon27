@@ -32,6 +32,7 @@ RUN apt-get update && apt-get install -y \
     ros-humble-slam-toolbox \
     ros-humble-robot-localization \
     ros-humble-pointcloud-to-laserscan \
+    ros-humble-rtabmap-ros \
     libgazebo-dev \
     cmake \
     build-essential \

@@ -1,0 +1,721 @@
+<?xml version="1.0" ?>
+<!--
+  NASA Lunabotics arena (Figure 9) - Gazebo Classic (Gazebo 11) / ROS 2 Humble
+
+  Arena interior: 6.88 m (X) x 5.0 m (Y).  Origin (0,0,0) = center of the
+  robot box in the starting zone (spawn the robot at 0 0 0).
+  +X toward the construction zone side (right in the figure), +Y up the page,
+  Z up.  The arena corners are therefore at x = -1.04 .. 5.84 and
+  y = -1.02 .. 3.98.
+  Excavation zone: x = -1.04 .. 1.46 m | Obstacle zone: x = 1.46 .. 5.84 m
+  Starting zone and construction zone contents intentionally omitted.
+
+  Obstacle positions were measured from the figure's pixel coordinates
+  (~97.4 px/m), so they are approximate.
+
+  Craters are circular holes cut through the floor (all in this one file).
+
+  Launch:
+    ros2 launch gazebo_ros gazebo.launch.py world:=/path/to/lunabotics_arena.world
+-->
+<sdf version="1.6">
+  <world name="lunabotics_arena">
+
+    <!-- Earth gravity by default. For lunar gravity use: 0 0 -1.62 -->
+    <gravity>0 0 -9.81</gravity>
+
+    <physics name="default_physics" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.05 0.05 0.08 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>2.4 1.48 10 0 0 0</pose>
+      <diffuse>0.9 0.9 0.9 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.4 0.3 -1.0</direction>
+    </light>
+
+
+    <!-- ================= Arena floor with 3 circular cut-outs (stair-stepped boxes, 1 cm resolution) ================= -->
+    <model name="arena_floor">
+      <static>true</static>
+      <link name="link">
+        <collision name="c0"><pose>2.4000 -0.5325 -0.050 0 0 0</pose><geometry><box><size>6.8800 0.9750 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v0"><pose>2.4000 -0.5325 -0.050 0 0 0</pose><geometry><box><size>6.8800 0.9750 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c1"><pose>0.5564 -0.0400 -0.050 0 0 0</pose><geometry><box><size>3.1928 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v1"><pose>0.5564 -0.0400 -0.050 0 0 0</pose><geometry><box><size>3.1928 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c2"><pose>4.0436 -0.0400 -0.050 0 0 0</pose><geometry><box><size>3.5928 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v2"><pose>4.0436 -0.0400 -0.050 0 0 0</pose><geometry><box><size>3.5928 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c3"><pose>0.5396 -0.0300 -0.050 0 0 0</pose><geometry><box><size>3.1592 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v3"><pose>0.5396 -0.0300 -0.050 0 0 0</pose><geometry><box><size>3.1592 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c4"><pose>4.0604 -0.0300 -0.050 0 0 0</pose><geometry><box><size>3.5592 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v4"><pose>4.0604 -0.0300 -0.050 0 0 0</pose><geometry><box><size>3.5592 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c5"><pose>0.5285 -0.0200 -0.050 0 0 0</pose><geometry><box><size>3.1369 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v5"><pose>0.5285 -0.0200 -0.050 0 0 0</pose><geometry><box><size>3.1369 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c6"><pose>4.0715 -0.0200 -0.050 0 0 0</pose><geometry><box><size>3.5369 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v6"><pose>4.0715 -0.0200 -0.050 0 0 0</pose><geometry><box><size>3.5369 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c7"><pose>0.5197 -0.0100 -0.050 0 0 0</pose><geometry><box><size>3.1195 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v7"><pose>0.5197 -0.0100 -0.050 0 0 0</pose><geometry><box><size>3.1195 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c8"><pose>4.0803 -0.0100 -0.050 0 0 0</pose><geometry><box><size>3.5195 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v8"><pose>4.0803 -0.0100 -0.050 0 0 0</pose><geometry><box><size>3.5195 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c9"><pose>0.5125 0.0000 -0.050 0 0 0</pose><geometry><box><size>3.1050 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v9"><pose>0.5125 0.0000 -0.050 0 0 0</pose><geometry><box><size>3.1050 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c10"><pose>4.0875 0.0000 -0.050 0 0 0</pose><geometry><box><size>3.5050 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v10"><pose>4.0875 0.0000 -0.050 0 0 0</pose><geometry><box><size>3.5050 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c11"><pose>0.5063 0.0100 -0.050 0 0 0</pose><geometry><box><size>3.0926 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v11"><pose>0.5063 0.0100 -0.050 0 0 0</pose><geometry><box><size>3.0926 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c12"><pose>4.0937 0.0100 -0.050 0 0 0</pose><geometry><box><size>3.4926 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v12"><pose>4.0937 0.0100 -0.050 0 0 0</pose><geometry><box><size>3.4926 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c13"><pose>0.5009 0.0200 -0.050 0 0 0</pose><geometry><box><size>3.0818 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v13"><pose>0.5009 0.0200 -0.050 0 0 0</pose><geometry><box><size>3.0818 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c14"><pose>4.0991 0.0200 -0.050 0 0 0</pose><geometry><box><size>3.4818 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v14"><pose>4.0991 0.0200 -0.050 0 0 0</pose><geometry><box><size>3.4818 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c15"><pose>0.4961 0.0300 -0.050 0 0 0</pose><geometry><box><size>3.0723 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v15"><pose>0.4961 0.0300 -0.050 0 0 0</pose><geometry><box><size>3.0723 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c16"><pose>4.1039 0.0300 -0.050 0 0 0</pose><geometry><box><size>3.4723 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v16"><pose>4.1039 0.0300 -0.050 0 0 0</pose><geometry><box><size>3.4723 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c17"><pose>0.4919 0.0400 -0.050 0 0 0</pose><geometry><box><size>3.0639 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v17"><pose>0.4919 0.0400 -0.050 0 0 0</pose><geometry><box><size>3.0639 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c18"><pose>4.1081 0.0400 -0.050 0 0 0</pose><geometry><box><size>3.4639 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v18"><pose>4.1081 0.0400 -0.050 0 0 0</pose><geometry><box><size>3.4639 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c19"><pose>0.4882 0.0500 -0.050 0 0 0</pose><geometry><box><size>3.0564 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v19"><pose>0.4882 0.0500 -0.050 0 0 0</pose><geometry><box><size>3.0564 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c20"><pose>4.1118 0.0500 -0.050 0 0 0</pose><geometry><box><size>3.4564 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v20"><pose>4.1118 0.0500 -0.050 0 0 0</pose><geometry><box><size>3.4564 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c21"><pose>0.4848 0.0600 -0.050 0 0 0</pose><geometry><box><size>3.0497 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v21"><pose>0.4848 0.0600 -0.050 0 0 0</pose><geometry><box><size>3.0497 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c22"><pose>4.1152 0.0600 -0.050 0 0 0</pose><geometry><box><size>3.4497 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v22"><pose>4.1152 0.0600 -0.050 0 0 0</pose><geometry><box><size>3.4497 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c23"><pose>0.4819 0.0700 -0.050 0 0 0</pose><geometry><box><size>3.0437 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v23"><pose>0.4819 0.0700 -0.050 0 0 0</pose><geometry><box><size>3.0437 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c24"><pose>4.1181 0.0700 -0.050 0 0 0</pose><geometry><box><size>3.4437 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v24"><pose>4.1181 0.0700 -0.050 0 0 0</pose><geometry><box><size>3.4437 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c25"><pose>0.4792 0.0800 -0.050 0 0 0</pose><geometry><box><size>3.0384 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v25"><pose>0.4792 0.0800 -0.050 0 0 0</pose><geometry><box><size>3.0384 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c26"><pose>4.1208 0.0800 -0.050 0 0 0</pose><geometry><box><size>3.4384 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v26"><pose>4.1208 0.0800 -0.050 0 0 0</pose><geometry><box><size>3.4384 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c27"><pose>0.4769 0.0900 -0.050 0 0 0</pose><geometry><box><size>3.0338 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v27"><pose>0.4769 0.0900 -0.050 0 0 0</pose><geometry><box><size>3.0338 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c28"><pose>4.1231 0.0900 -0.050 0 0 0</pose><geometry><box><size>3.4338 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v28"><pose>4.1231 0.0900 -0.050 0 0 0</pose><geometry><box><size>3.4338 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c29"><pose>0.4749 0.1000 -0.050 0 0 0</pose><geometry><box><size>3.0297 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v29"><pose>0.4749 0.1000 -0.050 0 0 0</pose><geometry><box><size>3.0297 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c30"><pose>4.1251 0.1000 -0.050 0 0 0</pose><geometry><box><size>3.4297 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v30"><pose>4.1251 0.1000 -0.050 0 0 0</pose><geometry><box><size>3.4297 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c31"><pose>0.4731 0.1100 -0.050 0 0 0</pose><geometry><box><size>3.0262 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v31"><pose>0.4731 0.1100 -0.050 0 0 0</pose><geometry><box><size>3.0262 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c32"><pose>4.1269 0.1100 -0.050 0 0 0</pose><geometry><box><size>3.4262 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v32"><pose>4.1269 0.1100 -0.050 0 0 0</pose><geometry><box><size>3.4262 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c33"><pose>0.4716 0.1200 -0.050 0 0 0</pose><geometry><box><size>3.0231 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v33"><pose>0.4716 0.1200 -0.050 0 0 0</pose><geometry><box><size>3.0231 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c34"><pose>4.1284 0.1200 -0.050 0 0 0</pose><geometry><box><size>3.4231 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v34"><pose>4.1284 0.1200 -0.050 0 0 0</pose><geometry><box><size>3.4231 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c35"><pose>0.4703 0.1300 -0.050 0 0 0</pose><geometry><box><size>3.0206 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v35"><pose>0.4703 0.1300 -0.050 0 0 0</pose><geometry><box><size>3.0206 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c36"><pose>4.1297 0.1300 -0.050 0 0 0</pose><geometry><box><size>3.4206 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v36"><pose>4.1297 0.1300 -0.050 0 0 0</pose><geometry><box><size>3.4206 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c37"><pose>0.4693 0.1400 -0.050 0 0 0</pose><geometry><box><size>3.0186 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v37"><pose>0.4693 0.1400 -0.050 0 0 0</pose><geometry><box><size>3.0186 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c38"><pose>4.1307 0.1400 -0.050 0 0 0</pose><geometry><box><size>3.4186 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v38"><pose>4.1307 0.1400 -0.050 0 0 0</pose><geometry><box><size>3.4186 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c39"><pose>0.4685 0.1500 -0.050 0 0 0</pose><geometry><box><size>3.0170 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v39"><pose>0.4685 0.1500 -0.050 0 0 0</pose><geometry><box><size>3.0170 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c40"><pose>4.1315 0.1500 -0.050 0 0 0</pose><geometry><box><size>3.4170 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v40"><pose>4.1315 0.1500 -0.050 0 0 0</pose><geometry><box><size>3.4170 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c41"><pose>0.4679 0.1600 -0.050 0 0 0</pose><geometry><box><size>3.0159 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v41"><pose>0.4679 0.1600 -0.050 0 0 0</pose><geometry><box><size>3.0159 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c42"><pose>4.1321 0.1600 -0.050 0 0 0</pose><geometry><box><size>3.4159 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v42"><pose>4.1321 0.1600 -0.050 0 0 0</pose><geometry><box><size>3.4159 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c43"><pose>0.4676 0.1700 -0.050 0 0 0</pose><geometry><box><size>3.0152 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v43"><pose>0.4676 0.1700 -0.050 0 0 0</pose><geometry><box><size>3.0152 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c44"><pose>4.1324 0.1700 -0.050 0 0 0</pose><geometry><box><size>3.4152 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v44"><pose>4.1324 0.1700 -0.050 0 0 0</pose><geometry><box><size>3.4152 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c45"><pose>0.4675 0.1800 -0.050 0 0 0</pose><geometry><box><size>3.0150 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v45"><pose>0.4675 0.1800 -0.050 0 0 0</pose><geometry><box><size>3.0150 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c46"><pose>4.1325 0.1800 -0.050 0 0 0</pose><geometry><box><size>3.4150 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v46"><pose>4.1325 0.1800 -0.050 0 0 0</pose><geometry><box><size>3.4150 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c47"><pose>0.4676 0.1900 -0.050 0 0 0</pose><geometry><box><size>3.0152 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v47"><pose>0.4676 0.1900 -0.050 0 0 0</pose><geometry><box><size>3.0152 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c48"><pose>4.1324 0.1900 -0.050 0 0 0</pose><geometry><box><size>3.4152 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v48"><pose>4.1324 0.1900 -0.050 0 0 0</pose><geometry><box><size>3.4152 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c49"><pose>0.4679 0.2000 -0.050 0 0 0</pose><geometry><box><size>3.0159 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v49"><pose>0.4679 0.2000 -0.050 0 0 0</pose><geometry><box><size>3.0159 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c50"><pose>4.1321 0.2000 -0.050 0 0 0</pose><geometry><box><size>3.4159 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v50"><pose>4.1321 0.2000 -0.050 0 0 0</pose><geometry><box><size>3.4159 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c51"><pose>0.4685 0.2100 -0.050 0 0 0</pose><geometry><box><size>3.0170 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v51"><pose>0.4685 0.2100 -0.050 0 0 0</pose><geometry><box><size>3.0170 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c52"><pose>4.1315 0.2100 -0.050 0 0 0</pose><geometry><box><size>3.4170 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v52"><pose>4.1315 0.2100 -0.050 0 0 0</pose><geometry><box><size>3.4170 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c53"><pose>0.4693 0.2200 -0.050 0 0 0</pose><geometry><box><size>3.0186 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v53"><pose>0.4693 0.2200 -0.050 0 0 0</pose><geometry><box><size>3.0186 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c54"><pose>4.1307 0.2200 -0.050 0 0 0</pose><geometry><box><size>3.4186 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v54"><pose>4.1307 0.2200 -0.050 0 0 0</pose><geometry><box><size>3.4186 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c55"><pose>0.4703 0.2300 -0.050 0 0 0</pose><geometry><box><size>3.0206 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v55"><pose>0.4703 0.2300 -0.050 0 0 0</pose><geometry><box><size>3.0206 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c56"><pose>4.1297 0.2300 -0.050 0 0 0</pose><geometry><box><size>3.4206 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v56"><pose>4.1297 0.2300 -0.050 0 0 0</pose><geometry><box><size>3.4206 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c57"><pose>0.4716 0.2400 -0.050 0 0 0</pose><geometry><box><size>3.0231 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v57"><pose>0.4716 0.2400 -0.050 0 0 0</pose><geometry><box><size>3.0231 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c58"><pose>4.1284 0.2400 -0.050 0 0 0</pose><geometry><box><size>3.4231 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v58"><pose>4.1284 0.2400 -0.050 0 0 0</pose><geometry><box><size>3.4231 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c59"><pose>0.4731 0.2500 -0.050 0 0 0</pose><geometry><box><size>3.0262 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v59"><pose>0.4731 0.2500 -0.050 0 0 0</pose><geometry><box><size>3.0262 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c60"><pose>4.1269 0.2500 -0.050 0 0 0</pose><geometry><box><size>3.4262 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v60"><pose>4.1269 0.2500 -0.050 0 0 0</pose><geometry><box><size>3.4262 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c61"><pose>0.4749 0.2600 -0.050 0 0 0</pose><geometry><box><size>3.0297 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v61"><pose>0.4749 0.2600 -0.050 0 0 0</pose><geometry><box><size>3.0297 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c62"><pose>4.1251 0.2600 -0.050 0 0 0</pose><geometry><box><size>3.4297 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v62"><pose>4.1251 0.2600 -0.050 0 0 0</pose><geometry><box><size>3.4297 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c63"><pose>0.4769 0.2700 -0.050 0 0 0</pose><geometry><box><size>3.0338 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v63"><pose>0.4769 0.2700 -0.050 0 0 0</pose><geometry><box><size>3.0338 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c64"><pose>4.1231 0.2700 -0.050 0 0 0</pose><geometry><box><size>3.4338 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v64"><pose>4.1231 0.2700 -0.050 0 0 0</pose><geometry><box><size>3.4338 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c65"><pose>0.4792 0.2800 -0.050 0 0 0</pose><geometry><box><size>3.0384 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v65"><pose>0.4792 0.2800 -0.050 0 0 0</pose><geometry><box><size>3.0384 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c66"><pose>4.1208 0.2800 -0.050 0 0 0</pose><geometry><box><size>3.4384 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v66"><pose>4.1208 0.2800 -0.050 0 0 0</pose><geometry><box><size>3.4384 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c67"><pose>0.4819 0.2900 -0.050 0 0 0</pose><geometry><box><size>3.0437 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v67"><pose>0.4819 0.2900 -0.050 0 0 0</pose><geometry><box><size>3.0437 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c68"><pose>4.1181 0.2900 -0.050 0 0 0</pose><geometry><box><size>3.4437 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v68"><pose>4.1181 0.2900 -0.050 0 0 0</pose><geometry><box><size>3.4437 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c69"><pose>0.4848 0.3000 -0.050 0 0 0</pose><geometry><box><size>3.0497 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v69"><pose>0.4848 0.3000 -0.050 0 0 0</pose><geometry><box><size>3.0497 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c70"><pose>4.1152 0.3000 -0.050 0 0 0</pose><geometry><box><size>3.4497 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v70"><pose>4.1152 0.3000 -0.050 0 0 0</pose><geometry><box><size>3.4497 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c71"><pose>0.4882 0.3100 -0.050 0 0 0</pose><geometry><box><size>3.0564 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v71"><pose>0.4882 0.3100 -0.050 0 0 0</pose><geometry><box><size>3.0564 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c72"><pose>4.1118 0.3100 -0.050 0 0 0</pose><geometry><box><size>3.4564 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v72"><pose>4.1118 0.3100 -0.050 0 0 0</pose><geometry><box><size>3.4564 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c73"><pose>0.4919 0.3200 -0.050 0 0 0</pose><geometry><box><size>3.0639 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v73"><pose>0.4919 0.3200 -0.050 0 0 0</pose><geometry><box><size>3.0639 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c74"><pose>4.1081 0.3200 -0.050 0 0 0</pose><geometry><box><size>3.4639 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v74"><pose>4.1081 0.3200 -0.050 0 0 0</pose><geometry><box><size>3.4639 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c75"><pose>0.4961 0.3300 -0.050 0 0 0</pose><geometry><box><size>3.0723 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v75"><pose>0.4961 0.3300 -0.050 0 0 0</pose><geometry><box><size>3.0723 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c76"><pose>4.1039 0.3300 -0.050 0 0 0</pose><geometry><box><size>3.4723 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v76"><pose>4.1039 0.3300 -0.050 0 0 0</pose><geometry><box><size>3.4723 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c77"><pose>0.5009 0.3400 -0.050 0 0 0</pose><geometry><box><size>3.0818 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v77"><pose>0.5009 0.3400 -0.050 0 0 0</pose><geometry><box><size>3.0818 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c78"><pose>4.0991 0.3400 -0.050 0 0 0</pose><geometry><box><size>3.4818 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v78"><pose>4.0991 0.3400 -0.050 0 0 0</pose><geometry><box><size>3.4818 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c79"><pose>0.5063 0.3500 -0.050 0 0 0</pose><geometry><box><size>3.0926 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v79"><pose>0.5063 0.3500 -0.050 0 0 0</pose><geometry><box><size>3.0926 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c80"><pose>4.0937 0.3500 -0.050 0 0 0</pose><geometry><box><size>3.4926 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v80"><pose>4.0937 0.3500 -0.050 0 0 0</pose><geometry><box><size>3.4926 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c81"><pose>0.5125 0.3600 -0.050 0 0 0</pose><geometry><box><size>3.1050 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v81"><pose>0.5125 0.3600 -0.050 0 0 0</pose><geometry><box><size>3.1050 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c82"><pose>4.0875 0.3600 -0.050 0 0 0</pose><geometry><box><size>3.5050 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v82"><pose>4.0875 0.3600 -0.050 0 0 0</pose><geometry><box><size>3.5050 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c83"><pose>0.5197 0.3700 -0.050 0 0 0</pose><geometry><box><size>3.1195 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v83"><pose>0.5197 0.3700 -0.050 0 0 0</pose><geometry><box><size>3.1195 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c84"><pose>4.0803 0.3700 -0.050 0 0 0</pose><geometry><box><size>3.5195 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v84"><pose>4.0803 0.3700 -0.050 0 0 0</pose><geometry><box><size>3.5195 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c85"><pose>0.5285 0.3800 -0.050 0 0 0</pose><geometry><box><size>3.1369 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v85"><pose>0.5285 0.3800 -0.050 0 0 0</pose><geometry><box><size>3.1369 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c86"><pose>4.0715 0.3800 -0.050 0 0 0</pose><geometry><box><size>3.5369 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v86"><pose>4.0715 0.3800 -0.050 0 0 0</pose><geometry><box><size>3.5369 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c87"><pose>0.5396 0.3900 -0.050 0 0 0</pose><geometry><box><size>3.1592 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v87"><pose>0.5396 0.3900 -0.050 0 0 0</pose><geometry><box><size>3.1592 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c88"><pose>4.0604 0.3900 -0.050 0 0 0</pose><geometry><box><size>3.5592 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v88"><pose>4.0604 0.3900 -0.050 0 0 0</pose><geometry><box><size>3.5592 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c89"><pose>0.5564 0.4000 -0.050 0 0 0</pose><geometry><box><size>3.1928 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v89"><pose>0.5564 0.4000 -0.050 0 0 0</pose><geometry><box><size>3.1928 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c90"><pose>4.0436 0.4000 -0.050 0 0 0</pose><geometry><box><size>3.5928 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v90"><pose>4.0436 0.4000 -0.050 0 0 0</pose><geometry><box><size>3.5928 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c91"><pose>2.4000 1.7025 -0.050 0 0 0</pose><geometry><box><size>6.8800 2.5950 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v91"><pose>2.4000 1.7025 -0.050 0 0 0</pose><geometry><box><size>6.8800 2.5950 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c92"><pose>2.0001 3.0050 -0.050 0 0 0</pose><geometry><box><size>6.0803 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v92"><pose>2.0001 3.0050 -0.050 0 0 0</pose><geometry><box><size>6.0803 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c93"><pose>5.4899 3.0050 -0.050 0 0 0</pose><geometry><box><size>0.7003 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v93"><pose>5.4899 3.0050 -0.050 0 0 0</pose><geometry><box><size>0.7003 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c94"><pose>1.9824 3.0150 -0.050 0 0 0</pose><geometry><box><size>6.0447 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v94"><pose>1.9824 3.0150 -0.050 0 0 0</pose><geometry><box><size>6.0447 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c95"><pose>5.5076 3.0150 -0.050 0 0 0</pose><geometry><box><size>0.6647 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v95"><pose>5.5076 3.0150 -0.050 0 0 0</pose><geometry><box><size>0.6647 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c96"><pose>1.9705 3.0250 -0.050 0 0 0</pose><geometry><box><size>6.0210 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v96"><pose>1.9705 3.0250 -0.050 0 0 0</pose><geometry><box><size>6.0210 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c97"><pose>5.5195 3.0250 -0.050 0 0 0</pose><geometry><box><size>0.6410 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v97"><pose>5.5195 3.0250 -0.050 0 0 0</pose><geometry><box><size>0.6410 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c98"><pose>1.9612 3.0350 -0.050 0 0 0</pose><geometry><box><size>6.0024 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v98"><pose>1.9612 3.0350 -0.050 0 0 0</pose><geometry><box><size>6.0024 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c99"><pose>5.5288 3.0350 -0.050 0 0 0</pose><geometry><box><size>0.6224 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v99"><pose>5.5288 3.0350 -0.050 0 0 0</pose><geometry><box><size>0.6224 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c100"><pose>1.9535 3.0450 -0.050 0 0 0</pose><geometry><box><size>5.9869 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v100"><pose>1.9535 3.0450 -0.050 0 0 0</pose><geometry><box><size>5.9869 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c101"><pose>5.5365 3.0450 -0.050 0 0 0</pose><geometry><box><size>0.6069 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v101"><pose>5.5365 3.0450 -0.050 0 0 0</pose><geometry><box><size>0.6069 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c102"><pose>1.9468 3.0550 -0.050 0 0 0</pose><geometry><box><size>5.9736 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v102"><pose>1.9468 3.0550 -0.050 0 0 0</pose><geometry><box><size>5.9736 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c103"><pose>5.5432 3.0550 -0.050 0 0 0</pose><geometry><box><size>0.5936 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v103"><pose>5.5432 3.0550 -0.050 0 0 0</pose><geometry><box><size>0.5936 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c104"><pose>1.9409 3.0650 -0.050 0 0 0</pose><geometry><box><size>5.9618 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v104"><pose>1.9409 3.0650 -0.050 0 0 0</pose><geometry><box><size>5.9618 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c105"><pose>5.5491 3.0650 -0.050 0 0 0</pose><geometry><box><size>0.5818 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v105"><pose>5.5491 3.0650 -0.050 0 0 0</pose><geometry><box><size>0.5818 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c106"><pose>1.9357 3.0750 -0.050 0 0 0</pose><geometry><box><size>5.9515 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v106"><pose>1.9357 3.0750 -0.050 0 0 0</pose><geometry><box><size>5.9515 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c107"><pose>5.5543 3.0750 -0.050 0 0 0</pose><geometry><box><size>0.5715 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v107"><pose>5.5543 3.0750 -0.050 0 0 0</pose><geometry><box><size>0.5715 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c108"><pose>1.9311 3.0850 -0.050 0 0 0</pose><geometry><box><size>5.9422 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v108"><pose>1.9311 3.0850 -0.050 0 0 0</pose><geometry><box><size>5.9422 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c109"><pose>5.5589 3.0850 -0.050 0 0 0</pose><geometry><box><size>0.5622 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v109"><pose>5.5589 3.0850 -0.050 0 0 0</pose><geometry><box><size>0.5622 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c110"><pose>1.9269 3.0950 -0.050 0 0 0</pose><geometry><box><size>5.9338 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v110"><pose>1.9269 3.0950 -0.050 0 0 0</pose><geometry><box><size>5.9338 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c111"><pose>5.5631 3.0950 -0.050 0 0 0</pose><geometry><box><size>0.5538 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v111"><pose>5.5631 3.0950 -0.050 0 0 0</pose><geometry><box><size>0.5538 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c112"><pose>1.9232 3.1050 -0.050 0 0 0</pose><geometry><box><size>5.9263 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v112"><pose>1.9232 3.1050 -0.050 0 0 0</pose><geometry><box><size>5.9263 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c113"><pose>5.5668 3.1050 -0.050 0 0 0</pose><geometry><box><size>0.5463 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v113"><pose>5.5668 3.1050 -0.050 0 0 0</pose><geometry><box><size>0.5463 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c114"><pose>1.9198 3.1150 -0.050 0 0 0</pose><geometry><box><size>5.9196 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v114"><pose>1.9198 3.1150 -0.050 0 0 0</pose><geometry><box><size>5.9196 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c115"><pose>5.5702 3.1150 -0.050 0 0 0</pose><geometry><box><size>0.5396 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v115"><pose>5.5702 3.1150 -0.050 0 0 0</pose><geometry><box><size>0.5396 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c116"><pose>1.9167 3.1250 -0.050 0 0 0</pose><geometry><box><size>5.9135 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v116"><pose>1.9167 3.1250 -0.050 0 0 0</pose><geometry><box><size>5.9135 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c117"><pose>5.5733 3.1250 -0.050 0 0 0</pose><geometry><box><size>0.5335 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v117"><pose>5.5733 3.1250 -0.050 0 0 0</pose><geometry><box><size>0.5335 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c118"><pose>1.9140 3.1350 -0.050 0 0 0</pose><geometry><box><size>5.9080 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v118"><pose>1.9140 3.1350 -0.050 0 0 0</pose><geometry><box><size>5.9080 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c119"><pose>5.5760 3.1350 -0.050 0 0 0</pose><geometry><box><size>0.5280 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v119"><pose>5.5760 3.1350 -0.050 0 0 0</pose><geometry><box><size>0.5280 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c120"><pose>1.9116 3.1450 -0.050 0 0 0</pose><geometry><box><size>5.9031 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v120"><pose>1.9116 3.1450 -0.050 0 0 0</pose><geometry><box><size>5.9031 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c121"><pose>5.5784 3.1450 -0.050 0 0 0</pose><geometry><box><size>0.5231 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v121"><pose>5.5784 3.1450 -0.050 0 0 0</pose><geometry><box><size>0.5231 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c122"><pose>1.9094 3.1550 -0.050 0 0 0</pose><geometry><box><size>5.8988 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v122"><pose>1.9094 3.1550 -0.050 0 0 0</pose><geometry><box><size>5.8988 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c123"><pose>5.5806 3.1550 -0.050 0 0 0</pose><geometry><box><size>0.5188 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v123"><pose>5.5806 3.1550 -0.050 0 0 0</pose><geometry><box><size>0.5188 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c124"><pose>1.9074 3.1650 -0.050 0 0 0</pose><geometry><box><size>5.8949 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v124"><pose>1.9074 3.1650 -0.050 0 0 0</pose><geometry><box><size>5.8949 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c125"><pose>5.5826 3.1650 -0.050 0 0 0</pose><geometry><box><size>0.5149 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v125"><pose>5.5826 3.1650 -0.050 0 0 0</pose><geometry><box><size>0.5149 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c126"><pose>1.9058 3.1750 -0.050 0 0 0</pose><geometry><box><size>5.8915 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v126"><pose>1.9058 3.1750 -0.050 0 0 0</pose><geometry><box><size>5.8915 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c127"><pose>5.5842 3.1750 -0.050 0 0 0</pose><geometry><box><size>0.5115 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v127"><pose>5.5842 3.1750 -0.050 0 0 0</pose><geometry><box><size>0.5115 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c128"><pose>1.9043 3.1850 -0.050 0 0 0</pose><geometry><box><size>5.8886 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v128"><pose>1.9043 3.1850 -0.050 0 0 0</pose><geometry><box><size>5.8886 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c129"><pose>5.5857 3.1850 -0.050 0 0 0</pose><geometry><box><size>0.5086 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v129"><pose>5.5857 3.1850 -0.050 0 0 0</pose><geometry><box><size>0.5086 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c130"><pose>-0.8072 3.1950 -0.050 0 0 0</pose><geometry><box><size>0.4656 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v130"><pose>-0.8072 3.1950 -0.050 0 0 0</pose><geometry><box><size>0.4656 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c131"><pose>2.1803 3.1950 -0.050 0 0 0</pose><geometry><box><size>5.3317 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v131"><pose>2.1803 3.1950 -0.050 0 0 0</pose><geometry><box><size>5.3317 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c132"><pose>5.5869 3.1950 -0.050 0 0 0</pose><geometry><box><size>0.5061 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v132"><pose>5.5869 3.1950 -0.050 0 0 0</pose><geometry><box><size>0.5061 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c133"><pose>-0.8230 3.2050 -0.050 0 0 0</pose><geometry><box><size>0.4340 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v133"><pose>-0.8230 3.2050 -0.050 0 0 0</pose><geometry><box><size>0.4340 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c134"><pose>2.1950 3.2050 -0.050 0 0 0</pose><geometry><box><size>5.2981 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v134"><pose>2.1950 3.2050 -0.050 0 0 0</pose><geometry><box><size>5.2981 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c135"><pose>5.5880 3.2050 -0.050 0 0 0</pose><geometry><box><size>0.5041 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v135"><pose>5.5880 3.2050 -0.050 0 0 0</pose><geometry><box><size>0.5041 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c136"><pose>-0.8334 3.2150 -0.050 0 0 0</pose><geometry><box><size>0.4132 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v136"><pose>-0.8334 3.2150 -0.050 0 0 0</pose><geometry><box><size>0.4132 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c137"><pose>2.2046 3.2150 -0.050 0 0 0</pose><geometry><box><size>5.2756 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v137"><pose>2.2046 3.2150 -0.050 0 0 0</pose><geometry><box><size>5.2756 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c138"><pose>5.5888 3.2150 -0.050 0 0 0</pose><geometry><box><size>0.5025 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v138"><pose>5.5888 3.2150 -0.050 0 0 0</pose><geometry><box><size>0.5025 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c139"><pose>-0.8415 3.2250 -0.050 0 0 0</pose><geometry><box><size>0.3970 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v139"><pose>-0.8415 3.2250 -0.050 0 0 0</pose><geometry><box><size>0.3970 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c140"><pose>2.2121 3.2250 -0.050 0 0 0</pose><geometry><box><size>5.2582 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v140"><pose>2.2121 3.2250 -0.050 0 0 0</pose><geometry><box><size>5.2582 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c141"><pose>5.5894 3.2250 -0.050 0 0 0</pose><geometry><box><size>0.5013 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v141"><pose>5.5894 3.2250 -0.050 0 0 0</pose><geometry><box><size>0.5013 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c142"><pose>-0.8482 3.2350 -0.050 0 0 0</pose><geometry><box><size>0.3836 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v142"><pose>-0.8482 3.2350 -0.050 0 0 0</pose><geometry><box><size>0.3836 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c143"><pose>2.2184 3.2350 -0.050 0 0 0</pose><geometry><box><size>5.2441 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v143"><pose>2.2184 3.2350 -0.050 0 0 0</pose><geometry><box><size>5.2441 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c144"><pose>5.5898 3.2350 -0.050 0 0 0</pose><geometry><box><size>0.5005 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v144"><pose>5.5898 3.2350 -0.050 0 0 0</pose><geometry><box><size>0.5005 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c145"><pose>-0.8539 3.2450 -0.050 0 0 0</pose><geometry><box><size>0.3723 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v145"><pose>-0.8539 3.2450 -0.050 0 0 0</pose><geometry><box><size>0.3723 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c146"><pose>2.2239 3.2450 -0.050 0 0 0</pose><geometry><box><size>5.2323 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v146"><pose>2.2239 3.2450 -0.050 0 0 0</pose><geometry><box><size>5.2323 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c147"><pose>5.5900 3.2450 -0.050 0 0 0</pose><geometry><box><size>0.5001 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v147"><pose>5.5900 3.2450 -0.050 0 0 0</pose><geometry><box><size>0.5001 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c148"><pose>-0.8588 3.2550 -0.050 0 0 0</pose><geometry><box><size>0.3624 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v148"><pose>-0.8588 3.2550 -0.050 0 0 0</pose><geometry><box><size>0.3624 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c149"><pose>2.2288 3.2550 -0.050 0 0 0</pose><geometry><box><size>5.2225 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v149"><pose>2.2288 3.2550 -0.050 0 0 0</pose><geometry><box><size>5.2225 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c150"><pose>5.5900 3.2550 -0.050 0 0 0</pose><geometry><box><size>0.5001 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v150"><pose>5.5900 3.2550 -0.050 0 0 0</pose><geometry><box><size>0.5001 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c151"><pose>-0.8631 3.2650 -0.050 0 0 0</pose><geometry><box><size>0.3539 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v151"><pose>-0.8631 3.2650 -0.050 0 0 0</pose><geometry><box><size>0.3539 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c152"><pose>2.2333 3.2650 -0.050 0 0 0</pose><geometry><box><size>5.2143 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v152"><pose>2.2333 3.2650 -0.050 0 0 0</pose><geometry><box><size>5.2143 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c153"><pose>5.5898 3.2650 -0.050 0 0 0</pose><geometry><box><size>0.5005 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v153"><pose>5.5898 3.2650 -0.050 0 0 0</pose><geometry><box><size>0.5005 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c154"><pose>-0.8668 3.2750 -0.050 0 0 0</pose><geometry><box><size>0.3464 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v154"><pose>-0.8668 3.2750 -0.050 0 0 0</pose><geometry><box><size>0.3464 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c155"><pose>2.2374 3.2750 -0.050 0 0 0</pose><geometry><box><size>5.2076 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v155"><pose>2.2374 3.2750 -0.050 0 0 0</pose><geometry><box><size>5.2076 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c156"><pose>5.5894 3.2750 -0.050 0 0 0</pose><geometry><box><size>0.5013 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v156"><pose>5.5894 3.2750 -0.050 0 0 0</pose><geometry><box><size>0.5013 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c157"><pose>-0.8701 3.2850 -0.050 0 0 0</pose><geometry><box><size>0.3398 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v157"><pose>-0.8701 3.2850 -0.050 0 0 0</pose><geometry><box><size>0.3398 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c158"><pose>2.2413 3.2850 -0.050 0 0 0</pose><geometry><box><size>5.2022 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v158"><pose>2.2413 3.2850 -0.050 0 0 0</pose><geometry><box><size>5.2022 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c159"><pose>5.5888 3.2850 -0.050 0 0 0</pose><geometry><box><size>0.5025 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v159"><pose>5.5888 3.2850 -0.050 0 0 0</pose><geometry><box><size>0.5025 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c160"><pose>-0.8730 3.2950 -0.050 0 0 0</pose><geometry><box><size>0.3340 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v160"><pose>-0.8730 3.2950 -0.050 0 0 0</pose><geometry><box><size>0.3340 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c161"><pose>2.2450 3.2950 -0.050 0 0 0</pose><geometry><box><size>5.1981 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v161"><pose>2.2450 3.2950 -0.050 0 0 0</pose><geometry><box><size>5.1981 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c162"><pose>5.5880 3.2950 -0.050 0 0 0</pose><geometry><box><size>0.5041 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v162"><pose>5.5880 3.2950 -0.050 0 0 0</pose><geometry><box><size>0.5041 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c163"><pose>-0.8755 3.3050 -0.050 0 0 0</pose><geometry><box><size>0.3290 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v163"><pose>-0.8755 3.3050 -0.050 0 0 0</pose><geometry><box><size>0.3290 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c164"><pose>2.2486 3.3050 -0.050 0 0 0</pose><geometry><box><size>5.1951 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v164"><pose>2.2486 3.3050 -0.050 0 0 0</pose><geometry><box><size>5.1951 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c165"><pose>5.5869 3.3050 -0.050 0 0 0</pose><geometry><box><size>0.5061 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v165"><pose>5.5869 3.3050 -0.050 0 0 0</pose><geometry><box><size>0.5061 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c166"><pose>-0.8777 3.3150 -0.050 0 0 0</pose><geometry><box><size>0.3246 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v166"><pose>-0.8777 3.3150 -0.050 0 0 0</pose><geometry><box><size>0.3246 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c167"><pose>2.2520 3.3150 -0.050 0 0 0</pose><geometry><box><size>5.1932 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v167"><pose>2.2520 3.3150 -0.050 0 0 0</pose><geometry><box><size>5.1932 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c168"><pose>5.5857 3.3150 -0.050 0 0 0</pose><geometry><box><size>0.5086 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v168"><pose>5.5857 3.3150 -0.050 0 0 0</pose><geometry><box><size>0.5086 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c169"><pose>-0.8796 3.3250 -0.050 0 0 0</pose><geometry><box><size>0.3209 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v169"><pose>-0.8796 3.3250 -0.050 0 0 0</pose><geometry><box><size>0.3209 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c170"><pose>2.2553 3.3250 -0.050 0 0 0</pose><geometry><box><size>5.1924 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v170"><pose>2.2553 3.3250 -0.050 0 0 0</pose><geometry><box><size>5.1924 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c171"><pose>5.5842 3.3250 -0.050 0 0 0</pose><geometry><box><size>0.5115 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v171"><pose>5.5842 3.3250 -0.050 0 0 0</pose><geometry><box><size>0.5115 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c172"><pose>-0.8811 3.3350 -0.050 0 0 0</pose><geometry><box><size>0.3177 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v172"><pose>-0.8811 3.3350 -0.050 0 0 0</pose><geometry><box><size>0.3177 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c173"><pose>2.2586 3.3350 -0.050 0 0 0</pose><geometry><box><size>5.1926 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v173"><pose>2.2586 3.3350 -0.050 0 0 0</pose><geometry><box><size>5.1926 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c174"><pose>5.5826 3.3350 -0.050 0 0 0</pose><geometry><box><size>0.5149 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v174"><pose>5.5826 3.3350 -0.050 0 0 0</pose><geometry><box><size>0.5149 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c175"><pose>-0.8824 3.3450 -0.050 0 0 0</pose><geometry><box><size>0.3151 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v175"><pose>-0.8824 3.3450 -0.050 0 0 0</pose><geometry><box><size>0.3151 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c176"><pose>2.2618 3.3450 -0.050 0 0 0</pose><geometry><box><size>5.1939 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v176"><pose>2.2618 3.3450 -0.050 0 0 0</pose><geometry><box><size>5.1939 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c177"><pose>5.5806 3.3450 -0.050 0 0 0</pose><geometry><box><size>0.5188 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v177"><pose>5.5806 3.3450 -0.050 0 0 0</pose><geometry><box><size>0.5188 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c178"><pose>-0.8835 3.3550 -0.050 0 0 0</pose><geometry><box><size>0.3131 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v178"><pose>-0.8835 3.3550 -0.050 0 0 0</pose><geometry><box><size>0.3131 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c179"><pose>2.2650 3.3550 -0.050 0 0 0</pose><geometry><box><size>5.1962 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v179"><pose>2.2650 3.3550 -0.050 0 0 0</pose><geometry><box><size>5.1962 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c180"><pose>5.5784 3.3550 -0.050 0 0 0</pose><geometry><box><size>0.5231 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v180"><pose>5.5784 3.3550 -0.050 0 0 0</pose><geometry><box><size>0.5231 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c181"><pose>-0.8842 3.3650 -0.050 0 0 0</pose><geometry><box><size>0.3116 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v181"><pose>-0.8842 3.3650 -0.050 0 0 0</pose><geometry><box><size>0.3116 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c182"><pose>2.2682 3.3650 -0.050 0 0 0</pose><geometry><box><size>5.1996 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v182"><pose>2.2682 3.3650 -0.050 0 0 0</pose><geometry><box><size>5.1996 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c183"><pose>5.5760 3.3650 -0.050 0 0 0</pose><geometry><box><size>0.5280 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v183"><pose>5.5760 3.3650 -0.050 0 0 0</pose><geometry><box><size>0.5280 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c184"><pose>-0.8847 3.3750 -0.050 0 0 0</pose><geometry><box><size>0.3106 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v184"><pose>-0.8847 3.3750 -0.050 0 0 0</pose><geometry><box><size>0.3106 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c185"><pose>2.2715 3.3750 -0.050 0 0 0</pose><geometry><box><size>5.2041 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v185"><pose>2.2715 3.3750 -0.050 0 0 0</pose><geometry><box><size>5.2041 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c186"><pose>5.5733 3.3750 -0.050 0 0 0</pose><geometry><box><size>0.5335 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v186"><pose>5.5733 3.3750 -0.050 0 0 0</pose><geometry><box><size>0.5335 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c187"><pose>-0.8850 3.3850 -0.050 0 0 0</pose><geometry><box><size>0.3101 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v187"><pose>-0.8850 3.3850 -0.050 0 0 0</pose><geometry><box><size>0.3101 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c188"><pose>2.2748 3.3850 -0.050 0 0 0</pose><geometry><box><size>5.2096 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v188"><pose>2.2748 3.3850 -0.050 0 0 0</pose><geometry><box><size>5.2096 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c189"><pose>5.5702 3.3850 -0.050 0 0 0</pose><geometry><box><size>0.5396 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v189"><pose>5.5702 3.3850 -0.050 0 0 0</pose><geometry><box><size>0.5396 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c190"><pose>-0.8850 3.3950 -0.050 0 0 0</pose><geometry><box><size>0.3101 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v190"><pose>-0.8850 3.3950 -0.050 0 0 0</pose><geometry><box><size>0.3101 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c191"><pose>2.2781 3.3950 -0.050 0 0 0</pose><geometry><box><size>5.2164 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v191"><pose>2.2781 3.3950 -0.050 0 0 0</pose><geometry><box><size>5.2164 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c192"><pose>5.5668 3.3950 -0.050 0 0 0</pose><geometry><box><size>0.5463 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v192"><pose>5.5668 3.3950 -0.050 0 0 0</pose><geometry><box><size>0.5463 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c193"><pose>-0.8847 3.4050 -0.050 0 0 0</pose><geometry><box><size>0.3106 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v193"><pose>-0.8847 3.4050 -0.050 0 0 0</pose><geometry><box><size>0.3106 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c194"><pose>2.2816 3.4050 -0.050 0 0 0</pose><geometry><box><size>5.2244 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v194"><pose>2.2816 3.4050 -0.050 0 0 0</pose><geometry><box><size>5.2244 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c195"><pose>5.5631 3.4050 -0.050 0 0 0</pose><geometry><box><size>0.5538 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v195"><pose>5.5631 3.4050 -0.050 0 0 0</pose><geometry><box><size>0.5538 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c196"><pose>-0.8842 3.4150 -0.050 0 0 0</pose><geometry><box><size>0.3116 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v196"><pose>-0.8842 3.4150 -0.050 0 0 0</pose><geometry><box><size>0.3116 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c197"><pose>2.2853 3.4150 -0.050 0 0 0</pose><geometry><box><size>5.2338 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v197"><pose>2.2853 3.4150 -0.050 0 0 0</pose><geometry><box><size>5.2338 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c198"><pose>5.5589 3.4150 -0.050 0 0 0</pose><geometry><box><size>0.5622 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v198"><pose>5.5589 3.4150 -0.050 0 0 0</pose><geometry><box><size>0.5622 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c199"><pose>-0.8835 3.4250 -0.050 0 0 0</pose><geometry><box><size>0.3131 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v199"><pose>-0.8835 3.4250 -0.050 0 0 0</pose><geometry><box><size>0.3131 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c200"><pose>2.2892 3.4250 -0.050 0 0 0</pose><geometry><box><size>5.2446 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v200"><pose>2.2892 3.4250 -0.050 0 0 0</pose><geometry><box><size>5.2446 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c201"><pose>5.5543 3.4250 -0.050 0 0 0</pose><geometry><box><size>0.5715 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v201"><pose>5.5543 3.4250 -0.050 0 0 0</pose><geometry><box><size>0.5715 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c202"><pose>-0.8824 3.4350 -0.050 0 0 0</pose><geometry><box><size>0.3151 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v202"><pose>-0.8824 3.4350 -0.050 0 0 0</pose><geometry><box><size>0.3151 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c203"><pose>2.2934 3.4350 -0.050 0 0 0</pose><geometry><box><size>5.2570 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v203"><pose>2.2934 3.4350 -0.050 0 0 0</pose><geometry><box><size>5.2570 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c204"><pose>5.5491 3.4350 -0.050 0 0 0</pose><geometry><box><size>0.5818 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v204"><pose>5.5491 3.4350 -0.050 0 0 0</pose><geometry><box><size>0.5818 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c205"><pose>-0.8811 3.4450 -0.050 0 0 0</pose><geometry><box><size>0.3177 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v205"><pose>-0.8811 3.4450 -0.050 0 0 0</pose><geometry><box><size>0.3177 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c206"><pose>2.2979 3.4450 -0.050 0 0 0</pose><geometry><box><size>5.2713 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v206"><pose>2.2979 3.4450 -0.050 0 0 0</pose><geometry><box><size>5.2713 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c207"><pose>5.5432 3.4450 -0.050 0 0 0</pose><geometry><box><size>0.5936 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v207"><pose>5.5432 3.4450 -0.050 0 0 0</pose><geometry><box><size>0.5936 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c208"><pose>-0.8796 3.4550 -0.050 0 0 0</pose><geometry><box><size>0.3209 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v208"><pose>-0.8796 3.4550 -0.050 0 0 0</pose><geometry><box><size>0.3209 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c209"><pose>2.3030 3.4550 -0.050 0 0 0</pose><geometry><box><size>5.2878 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v209"><pose>2.3030 3.4550 -0.050 0 0 0</pose><geometry><box><size>5.2878 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c210"><pose>5.5365 3.4550 -0.050 0 0 0</pose><geometry><box><size>0.6069 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v210"><pose>5.5365 3.4550 -0.050 0 0 0</pose><geometry><box><size>0.6069 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c211"><pose>-0.8777 3.4650 -0.050 0 0 0</pose><geometry><box><size>0.3246 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v211"><pose>-0.8777 3.4650 -0.050 0 0 0</pose><geometry><box><size>0.3246 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c212"><pose>2.3089 3.4650 -0.050 0 0 0</pose><geometry><box><size>5.3070 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v212"><pose>2.3089 3.4650 -0.050 0 0 0</pose><geometry><box><size>5.3070 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c213"><pose>5.5288 3.4650 -0.050 0 0 0</pose><geometry><box><size>0.6224 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v213"><pose>5.5288 3.4650 -0.050 0 0 0</pose><geometry><box><size>0.6224 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c214"><pose>-0.8755 3.4750 -0.050 0 0 0</pose><geometry><box><size>0.3290 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v214"><pose>-0.8755 3.4750 -0.050 0 0 0</pose><geometry><box><size>0.3290 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c215"><pose>2.3160 3.4750 -0.050 0 0 0</pose><geometry><box><size>5.3300 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v215"><pose>2.3160 3.4750 -0.050 0 0 0</pose><geometry><box><size>5.3300 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c216"><pose>5.5195 3.4750 -0.050 0 0 0</pose><geometry><box><size>0.6410 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v216"><pose>5.5195 3.4750 -0.050 0 0 0</pose><geometry><box><size>0.6410 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c217"><pose>-0.8730 3.4850 -0.050 0 0 0</pose><geometry><box><size>0.3340 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v217"><pose>-0.8730 3.4850 -0.050 0 0 0</pose><geometry><box><size>0.3340 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c218"><pose>2.3254 3.4850 -0.050 0 0 0</pose><geometry><box><size>5.3587 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v218"><pose>2.3254 3.4850 -0.050 0 0 0</pose><geometry><box><size>5.3587 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c219"><pose>5.5076 3.4850 -0.050 0 0 0</pose><geometry><box><size>0.6647 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v219"><pose>5.5076 3.4850 -0.050 0 0 0</pose><geometry><box><size>0.6647 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c220"><pose>-0.8701 3.4950 -0.050 0 0 0</pose><geometry><box><size>0.3398 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v220"><pose>-0.8701 3.4950 -0.050 0 0 0</pose><geometry><box><size>0.3398 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c221"><pose>2.3402 3.4950 -0.050 0 0 0</pose><geometry><box><size>5.4000 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v221"><pose>2.3402 3.4950 -0.050 0 0 0</pose><geometry><box><size>5.4000 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c222"><pose>5.4899 3.4950 -0.050 0 0 0</pose><geometry><box><size>0.7003 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v222"><pose>5.4899 3.4950 -0.050 0 0 0</pose><geometry><box><size>0.7003 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c223"><pose>-0.8668 3.5050 -0.050 0 0 0</pose><geometry><box><size>0.3464 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v223"><pose>-0.8668 3.5050 -0.050 0 0 0</pose><geometry><box><size>0.3464 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c224"><pose>2.7368 3.5050 -0.050 0 0 0</pose><geometry><box><size>6.2064 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v224"><pose>2.7368 3.5050 -0.050 0 0 0</pose><geometry><box><size>6.2064 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c225"><pose>-0.8631 3.5150 -0.050 0 0 0</pose><geometry><box><size>0.3539 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v225"><pose>-0.8631 3.5150 -0.050 0 0 0</pose><geometry><box><size>0.3539 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c226"><pose>2.7331 3.5150 -0.050 0 0 0</pose><geometry><box><size>6.2139 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v226"><pose>2.7331 3.5150 -0.050 0 0 0</pose><geometry><box><size>6.2139 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c227"><pose>-0.8588 3.5250 -0.050 0 0 0</pose><geometry><box><size>0.3624 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v227"><pose>-0.8588 3.5250 -0.050 0 0 0</pose><geometry><box><size>0.3624 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c228"><pose>2.7288 3.5250 -0.050 0 0 0</pose><geometry><box><size>6.2224 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v228"><pose>2.7288 3.5250 -0.050 0 0 0</pose><geometry><box><size>6.2224 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c229"><pose>-0.8539 3.5350 -0.050 0 0 0</pose><geometry><box><size>0.3723 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v229"><pose>-0.8539 3.5350 -0.050 0 0 0</pose><geometry><box><size>0.3723 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c230"><pose>2.7239 3.5350 -0.050 0 0 0</pose><geometry><box><size>6.2323 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v230"><pose>2.7239 3.5350 -0.050 0 0 0</pose><geometry><box><size>6.2323 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c231"><pose>-0.8482 3.5450 -0.050 0 0 0</pose><geometry><box><size>0.3836 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v231"><pose>-0.8482 3.5450 -0.050 0 0 0</pose><geometry><box><size>0.3836 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c232"><pose>2.7182 3.5450 -0.050 0 0 0</pose><geometry><box><size>6.2436 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v232"><pose>2.7182 3.5450 -0.050 0 0 0</pose><geometry><box><size>6.2436 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c233"><pose>-0.8415 3.5550 -0.050 0 0 0</pose><geometry><box><size>0.3970 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v233"><pose>-0.8415 3.5550 -0.050 0 0 0</pose><geometry><box><size>0.3970 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c234"><pose>2.7115 3.5550 -0.050 0 0 0</pose><geometry><box><size>6.2570 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v234"><pose>2.7115 3.5550 -0.050 0 0 0</pose><geometry><box><size>6.2570 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c235"><pose>-0.8334 3.5650 -0.050 0 0 0</pose><geometry><box><size>0.4132 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v235"><pose>-0.8334 3.5650 -0.050 0 0 0</pose><geometry><box><size>0.4132 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c236"><pose>2.7034 3.5650 -0.050 0 0 0</pose><geometry><box><size>6.2732 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v236"><pose>2.7034 3.5650 -0.050 0 0 0</pose><geometry><box><size>6.2732 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c237"><pose>-0.8230 3.5750 -0.050 0 0 0</pose><geometry><box><size>0.4340 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v237"><pose>-0.8230 3.5750 -0.050 0 0 0</pose><geometry><box><size>0.4340 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c238"><pose>2.6930 3.5750 -0.050 0 0 0</pose><geometry><box><size>6.2940 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v238"><pose>2.6930 3.5750 -0.050 0 0 0</pose><geometry><box><size>6.2940 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c239"><pose>-0.8072 3.5850 -0.050 0 0 0</pose><geometry><box><size>0.4656 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v239"><pose>-0.8072 3.5850 -0.050 0 0 0</pose><geometry><box><size>0.4656 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c240"><pose>2.6772 3.5850 -0.050 0 0 0</pose><geometry><box><size>6.3256 0.0100 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v240"><pose>2.6772 3.5850 -0.050 0 0 0</pose><geometry><box><size>6.3256 0.0100 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+        <collision name="c241"><pose>2.4000 3.7850 -0.050 0 0 0</pose><geometry><box><size>6.8800 0.3900 0.10</size></box></geometry><surface><friction><ode><mu>1</mu><mu2>1</mu2></ode></friction></surface></collision>
+        <visual name="v241"><pose>2.4000 3.7850 -0.050 0 0 0</pose><geometry><box><size>6.8800 0.3900 0.10</size></box></geometry><material><ambient>0.55 0.53 0.50 1</ambient><diffuse>0.55 0.53 0.50 1</diffuse><specular>0.05 0.05 0.05 1</specular></material></visual>
+      </link>
+    </model>
+
+    <!-- ================= Arena walls (outside the 6.88 x 5 m interior) ================= -->
+    <model name="wall_south">
+      <static>true</static>
+      <pose>2.4 -1.045 0.3 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>6.98 0.05 0.6</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>6.98 0.05 0.6</size></box></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient><diffuse>0.8 0.8 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_north">
+      <static>true</static>
+      <pose>2.4 4.005 0.3 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>6.98 0.05 0.6</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>6.98 0.05 0.6</size></box></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient><diffuse>0.8 0.8 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-1.065 1.48 0.3 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.05 5.0 0.6</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.05 5.0 0.6</size></box></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient><diffuse>0.8 0.8 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_east">
+      <static>true</static>
+      <pose>5.865 1.48 0.3 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.05 5.0 0.6</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.05 5.0 0.6</size></box></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient><diffuse>0.8 0.8 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ================= Zone divider (visual only, x = 2.5 m) ================= -->
+    <model name="zone_divider">
+      <static>true</static>
+      <pose>1.46 1.48 0.002 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry><box><size>0.04 5.0 0.004</size></box></geometry>
+          <material><ambient>0.9 0.9 0.2 1</ambient><diffuse>0.9 0.9 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ================= Column (obstacle zone) ================= -->
+    <model name="column">
+      <static>true</static>
+      <pose>2.56 1.59 0.4 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.5 0.5 0.8</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.5 0.5 0.8</size></box></geometry>
+          <material><ambient>0.8 0.1 0.1 1</ambient><diffuse>0.8 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ================= Rocks (30-40 cm diameter, partially buried spheres) ================= -->
+    <model name="rock_1">
+      <static>true</static>
+      <pose>0.88 3.32 0.0875 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><sphere><radius>0.175</radius></sphere></geometry></collision>
+        <visual name="visual">
+          <geometry><sphere><radius>0.175</radius></sphere></geometry>
+          <material><ambient>0.3 0.3 0.32 1</ambient><diffuse>0.3 0.3 0.32 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="rock_2">
+      <static>true</static>
+      <pose>2.42 3.43 0.10 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><sphere><radius>0.20</radius></sphere></geometry></collision>
+        <visual name="visual">
+          <geometry><sphere><radius>0.20</radius></sphere></geometry>
+          <material><ambient>0.3 0.3 0.32 1</ambient><diffuse>0.3 0.3 0.32 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="rock_3">
+      <static>true</static>
+      <pose>-0.68 1.77 0.075 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><sphere><radius>0.15</radius></sphere></geometry></collision>
+        <visual name="visual">
+          <geometry><sphere><radius>0.15</radius></sphere></geometry>
+          <material><ambient>0.3 0.3 0.32 1</ambient><diffuse>0.3 0.3 0.32 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="rock_4">
+      <static>true</static>
+      <pose>1.75 1.74 0.08 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><sphere><radius>0.16</radius></sphere></geometry></collision>
+        <visual name="visual">
+          <geometry><sphere><radius>0.16</radius></sphere></geometry>
+          <material><ambient>0.3 0.3 0.32 1</ambient><diffuse>0.3 0.3 0.32 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="rock_5">
+      <static>true</static>
+      <pose>3.54 1.62 0.095 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><sphere><radius>0.19</radius></sphere></geometry></collision>
+        <visual name="visual">
+          <geometry><sphere><radius>0.19</radius></sphere></geometry>
+          <material><ambient>0.3 0.3 0.32 1</ambient><diffuse>0.3 0.3 0.32 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="rock_6">
+      <static>true</static>
+      <pose>5.39 2.09 0.09 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><sphere><radius>0.18</radius></sphere></geometry></collision>
+        <visual name="visual">
+          <geometry><sphere><radius>0.18</radius></sphere></geometry>
+          <material><ambient>0.3 0.3 0.32 1</ambient><diffuse>0.3 0.3 0.32 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="rock_7">
+      <static>true</static>
+      <pose>1.24 -0.23 0.085 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><sphere><radius>0.17</radius></sphere></geometry></collision>
+        <visual name="visual">
+          <geometry><sphere><radius>0.17</radius></sphere></geometry>
+          <material><ambient>0.3 0.3 0.32 1</ambient><diffuse>0.3 0.3 0.32 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+
+
+
+    <!-- ================= GUI camera ================= -->
+    <gui>
+      <camera name="user_camera">
+        <pose>2.4 -5.52 5.5 0 0.9 1.5708</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+  </world>
+</sdf>
+
