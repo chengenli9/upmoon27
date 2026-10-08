@@ -1,0 +1,12 @@
+rover_driver:
+  ros__parameters:
+    wheel_radius: 0.19
+    track_width: 1.44
+    counts_per_rev: 0        # MEASURE; node refuses to start at 0
+    max_wheel_speed: 0.5     # MEASURE; m/s at 100 % throttle
+    left_encoder_sign: 1
+    right_encoder_sign: 1
+    left_port: /dev/ttyACM0
+    right_port: /dev/ttyACM1
+    yaw_source: encoders     # or imu
+    publish_tf: true
