@@ -2,7 +2,7 @@ rover_driver:
   ros__parameters:
     wheel_radius: 0.19
     track_width: 1.44
-    counts_per_rev: 0        # MEASURE to enable odometry; node still DRIVES at 0 (odom disabled)
+    counts_per_rev: 2400        # MEASURE to enable odometry; node still DRIVES at 0 (odom disabled)
     max_wheel_speed: 0.5     # MEASURE; m/s at 100 % throttle
     left_encoder_sign: 1
     right_encoder_sign: 1

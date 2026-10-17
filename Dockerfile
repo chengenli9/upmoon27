@@ -1,4 +1,4 @@
-FROM osrf/ros:humble-desktop-full
+FROM ros:humble-ros-base
 
 # Avoid interactive prompts during apt-get
 ENV DEBIAN_FRONTEND=noninteractive
@@ -19,25 +19,19 @@ RUN apt-get update && apt-get install -y \
     ros-humble-joint-state-publisher \
     ros-humble-tf2-ros \
     ros-humble-tf2-msgs \
-    ros-humble-gazebo-ros-pkgs \
     ros-humble-rviz2 \
-    ros-humble-gazebo-plugins \
-    ros-humble-gazebo-msgs \
     ros-humble-teleop-twist-keyboard \
     'ros-humble-nav2-*' \
     ros-humble-navigation2 \
     ros-humble-turtlebot3 \
     ros-humble-turtlebot3-msgs \
-    ros-humble-turtlebot3-simulations \
     ros-humble-slam-toolbox \
     ros-humble-robot-localization \
     ros-humble-pointcloud-to-laserscan \
-    libgazebo-dev \
     cmake \
     build-essential \
     curl \
     net-tools \
-    xvfb \
     && rm -rf /var/lib/apt/lists/*
 
 # Upgrade pip and install build tools
