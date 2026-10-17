@@ -2,11 +2,15 @@ rover_driver:
   ros__parameters:
     wheel_radius: 0.19
     track_width: 1.44
-    counts_per_rev: 0        # MEASURE; node refuses to start at 0
+    counts_per_rev: 0        # MEASURE to enable odometry; node still DRIVES at 0 (odom disabled)
     max_wheel_speed: 0.5     # MEASURE; m/s at 100 % throttle
     left_encoder_sign: 1
     right_encoder_sign: 1
+    # Prefer stable names once known, e.g.:
+    #   /dev/serial/by-id/usb-Dimension_Engineering_Sabertooth_...-if00
+    # If left blank/ACM, the node auto-discovers non-Arduino serial ports.
     left_port: /dev/ttyACM0
     right_port: /dev/ttyACM1
+    drive_sign: -1           # -1 corrects the forward/backward inversion seen on the bench
     yaw_source: encoders     # or imu
     publish_tf: true
