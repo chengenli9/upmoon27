@@ -4,12 +4,22 @@
     <gazebo>
         <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
 
-            <!-- Wheel Information -->
-            <left_joint>left_back_wheel_joint</left_joint>
+            <!-- Four wheels: two left/right pairs -->
+            <num_wheel_pairs>2</num_wheel_pairs>
+
+            <!-- Front pair -->
             <left_joint>left_front_wheel_joint</left_joint>
-            <right_joint>right_back_wheel_joint</right_joint>
             <right_joint>right_front_wheel_joint</right_joint>
+
+            <!-- Back pair -->
+            <left_joint>left_back_wheel_joint</left_joint>
+            <right_joint>right_back_wheel_joint</right_joint>
+
+            <!-- One entry per pair, in the same order -->
             <wheel_separation>0.35</wheel_separation>
+            <wheel_separation>0.35</wheel_separation>
+
+            <wheel_diameter>0.1</wheel_diameter>
             <wheel_diameter>0.1</wheel_diameter>
 
 
