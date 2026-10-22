@@ -1,0 +1,1 @@
+"""Rover robot description package."""

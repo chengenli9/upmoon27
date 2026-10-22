@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # colcon/ROS2 build artifacts
 build/
 install/
@@ -7,3 +8,15 @@ log/
 .vscode/
 *.swp
 .DS_Store
+=======
+# colcon/ROS2 build artifacts
+build/
+install/
+log/
+
+# Common editor/OS junk (optional, remove if unwanted)
+.vscode/
+*.swp
+.DS_Store
+core.*
+>>>>>>> remotes/origin/gazebo_testing_wes
