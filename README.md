@@ -25,6 +25,7 @@ This repository uses **ROS 2 Humble**, which is based on **Ubuntu 22.04 (Jammy)*
 7. [Running a ROS2 Package](#running-a-ros2-package)
 8. [ROS2 Multi-device Communication](#ros2-multi-device-communication)
    - [Verify Communication](#verify-communication)
+9. [Tutorials](#tutorials)
 
 ## Creating a Branch from This Template
 
@@ -285,3 +286,17 @@ You can also see if the topic is publishing by running `ros2 topic list`. You sh
 /rosout
 ```
 
+## Tutorials
+
+### ROS 2 Fundamentals
+- [ROS 2 Humble Crash Course](https://www.youtube.com/watch?v=Gg25GfA456o)
+- [Robot Descriptions (URDF)](https://www.youtube.com/watch?v=CwdbsvcpOHM&t=247s)
+
+### SLAM and Navigation
+- [SLAM Toolbox Basics](https://www.youtube.com/watch?v=ZaiA3hWaRzE&t=481s)
+- [Nav2 Basics](https://www.youtube.com/watch?v=jkoGkAd0GYk&t=1019s)
+
+### Hardware
+- [Adding a Camera to a Robot](https://www.youtube.com/watch?v=jkoGkAd0GYk&t=1019s)
+- [Adding a Depth Camera to a Robot](https://www.youtube.com/watch?v=T9xZ22i9-Ys&t=435s)
+- [Adding a 2D Lidar to a Robot](https://www.youtube.com/watch?v=eJZXRncGaGM&t=966s)
